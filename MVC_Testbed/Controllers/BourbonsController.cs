@@ -36,6 +36,7 @@ namespace MVC_Testbed.Controllers
 
             var bourbon = await _context.Bourbons
                 .Include(b => b.Distillery)
+                .Include(b => b.Ratings)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bourbon == null)
             {
@@ -82,7 +83,7 @@ namespace MVC_Testbed.Controllers
             {
                 return NotFound();
             }
-            ViewData["DistilleryId"] = new SelectList(_context.Distilleries, "Id", "Id", bourbon.DistilleryId);
+            ViewData["Distillery"] = new SelectList(_context.Distilleries, "Id", "Name", bourbon.DistilleryId);
             return View(bourbon);
         }
 

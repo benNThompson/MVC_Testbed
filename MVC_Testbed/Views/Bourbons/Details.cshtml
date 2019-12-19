@@ -23,6 +23,28 @@
             @Html.ActionLink(Model.Distillery.Name, "Details", "Distilleries", new { Model.Distillery.Id }, null)
         </dd>
     </dl>
+    <dl class="row">
+        <dt class="col-sm-2">Ratings</dt>
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Ratings.OrderByDescending(r => r.TastingDate))
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => r.Rating)</td>
+                        <td>@Html.DisplayFor(modelItem => r.TastingDate)</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

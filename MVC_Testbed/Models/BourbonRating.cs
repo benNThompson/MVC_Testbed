@@ -15,6 +15,7 @@ namespace MVC_Testbed.Models
         public decimal Rating { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name ="Tasting Date")]
         public DateTime TastingDate { get; set; }
     }
 }

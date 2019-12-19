@@ -48,7 +48,7 @@ namespace MVC_Testbed.Views
         // GET: BourbonRatings/Create
         public IActionResult Create()
         {
-            ViewData["BourbonId"] = new SelectList(_context.Bourbons, "Id", "Id");
+            ViewData["Bourbon"] = new SelectList(_context.Bourbons, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace MVC_Testbed.Views
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BourbonId"] = new SelectList(_context.Bourbons, "Id", "Id", bourbonRating.BourbonId);
+            ViewData["Bourbon"] = new SelectList(_context.Bourbons, "Id", "Name", bourbonRating.BourbonId);
             return View(bourbonRating);
         }
 
@@ -82,7 +82,7 @@ namespace MVC_Testbed.Views
             {
                 return NotFound();
             }
-            ViewData["BourbonId"] = new SelectList(_context.Bourbons, "Id", "Id", bourbonRating.BourbonId);
+            ViewData["Bourbon"] = new SelectList(_context.Bourbons, "Id", "Name", bourbonRating.BourbonId);
             return View(bourbonRating);
         }
 
@@ -118,7 +118,7 @@ namespace MVC_Testbed.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BourbonId"] = new SelectList(_context.Bourbons, "Id", "Id", bourbonRating.BourbonId);
+            ViewData["Bourbon"] = new SelectList(_context.Bourbons, "Id", "Name", bourbonRating.BourbonId);
             return View(bourbonRating);
         }
 

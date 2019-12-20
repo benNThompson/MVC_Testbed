@@ -2,7 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome, Ben</h1>
-
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome, Ben</h1>
+        <p><a asp-action="Index" asp-controller="Distilleries">Distilleries</a></p>
+        <p><a asp-action="Index" asp-controller="Bourbons">Bourbons</a></p>
+        <p><a asp-action="Index" asp-controller="BourbonRatings">Ratings</a></p>
+    </div>

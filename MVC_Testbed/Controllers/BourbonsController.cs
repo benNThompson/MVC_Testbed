@@ -43,13 +43,15 @@ namespace MVC_Testbed.Controllers
                 return NotFound();
             }
 
+            ViewData["AverageRating"] = bourbon.Ratings.Any() ? bourbon.Ratings.Average(r => r.Rating).ToString() : "No ratings";
+
             return View(bourbon);
         }
 
         // GET: Bourbons/Create
         public IActionResult Create()
         {
-            ViewData["DistilleryId"] = new SelectList(_context.Distilleries, "Id", "Id");
+            ViewData["DistilleryId"] = new SelectList(_context.Distilleries, "Id", "Name");
             return View();
         }
 

@@ -61,8 +61,8 @@
         </thead>
         <tbody>
             <tr v-for="bourbon in bourbons">
-                <td>{{ bourbon.name }}</td>
-                <td>{{ getDistilleryName(bourbon) }}</td>
+                <td><a v-bind:href="'/Bourbons/Details/' + bourbon.id">{{ bourbon.name }}</a></td>
+                <td><a v-bind:href="'/Distilleries/Details/' + bourbon.distilleryId">{{ getDistilleryName(bourbon) }}</a></td>
             </tr>
         </tbody>
     </table>

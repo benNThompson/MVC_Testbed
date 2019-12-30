@@ -63,6 +63,7 @@
             <tr v-for="bourbon in bourbons">
                 <td><a v-bind:href="'/Bourbons/Details/' + bourbon.id">{{ bourbon.name }}</a></td>
                 <td><a v-bind:href="'/Distilleries/Details/' + bourbon.distilleryId">{{ getDistilleryName(bourbon) }}</a></td>
+                <td><a v-bind:href="'Bourbons/Edit/' + bourbon.id">Edit</a> | <a v-bind:href="'Bourbons/Delete/' + bourbon.id">Delete</a></td>
             </tr>
         </tbody>
     </table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVC_Testbed.Models.Bourbon>
+
+@{
+    ViewData["Title"] = "ApiIndex";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    var app;
+    $(document).ready(function () {
+        app = new Vue({
+            el: "#app",
+            data: {
+                bourbons: [],
+                distilleries: [],
+            },
+            mounted: function () {
+                this.fetchBourbonData();
+                this.fetchDistilleryData();
+            },
+            methods: {
+                fetchBourbonData: function () {
+                    $.ajax("/api/bourbonsApi").done(function (response) {
+                        app.bourbons = response;
+                    });
+                },
+                fetchDistilleryData: function () {
+                    $.ajax("/api/DistilleriesApi").done(function (response) {
+                        app.distilleries = response;
+                    })
+                },
+                getDistilleryName: function (b) {
+                    return app.distilleries.find(d => d.id === b.distilleryId).name;
+                }
+            }
+        });
+    });
+</script>
+
+<h1>Bourbons ApiIndex</h1>
+
+<div id="app">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Distillery)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="bourbon in bourbons">
+                <td>{{ bourbon.name }}</td>
+                <td>{{ getDistilleryName(bourbon) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

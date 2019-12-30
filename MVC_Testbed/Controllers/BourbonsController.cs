@@ -26,6 +26,11 @@ namespace MVC_Testbed.Controllers
             return View(await mvcTestbedContext.ToListAsync());
         }
 
+        public async Task<IActionResult> ApiIndex()
+        {
+            return View();
+        }
+
         // GET: Bourbons/Details/5
         public async Task<IActionResult> Details(int? id)
         {

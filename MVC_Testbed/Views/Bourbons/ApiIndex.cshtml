@@ -5,41 +5,7 @@
 }
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-    var app;
-    $(document).ready(function () {
-        app = new Vue({
-            el: "#app",
-            data: {
-                bourbons: [],
-                distilleries: [],
-            },
-            mounted: function () {
-                this.fetchBourbonData();
-                this.fetchDistilleryData();
-            },
-            methods: {
-                fetchBourbonData: function () {
-                    $.ajax("/api/bourbonsApi").done(function (response) {
-                        app.bourbons = response;
-                    });
-                },
-                fetchDistilleryData: function () {
-                    $.ajax("/api/DistilleriesApi").done(function (response) {
-                        app.distilleries = response;
-                    })
-                },
-                getDistilleryName: function (b) {
-                    return app.distilleries.find(d => d.id === b.distilleryId).name;
-                }
-            }
-        });
-    });
-</script>
 
 <h1>Bourbons ApiIndex</h1>
 
@@ -69,3 +35,40 @@
     </table>
 
 </div>
+
+<script type="text/javascript">
+    app = new Vue({
+        el: "#app",
+        data: {
+            bourbons: [],
+            distilleries: [],
+        },
+        mounted: function () {
+            this.fetchBourbonData();
+            this.fetchDistilleryData();
+        },
+        methods: {
+            fetchBourbonData: function () {
+                fetch("/api/bourbonsApi")
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        this.bourbons = data;
+                    })
+            },
+            fetchDistilleryData: function () {
+                fetch("/api/distilleriesApi")
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        this.distilleries = data;
+                    })
+            },
+            getDistilleryName: function (b) {
+                return app.distilleries.find(d => d.id === b.distilleryId).name;
+            }
+        }
+    });
+</script>
